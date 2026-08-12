@@ -1,0 +1,27 @@
+{
+  "name": "Vitals — health, measured",
+  "short_name": "Vitals",
+  "description": "A calm, evidence-minded health blog on sleep, strength training, stress, and everyday wellbeing.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f9f9",
+  "theme_color": "#0e9aa6",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "lifestyle"],
+  "lang": "en"
+}

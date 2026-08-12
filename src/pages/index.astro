@@ -1,6 +1,7 @@
 ---
 import SeriesSpine from '~/components/SeriesSpine.astro'
 import EcgTrace from '~/components/EcgTrace.astro'
+import WellnessScore from '~/components/WellnessScore.astro'
 /**
  * /  — oriz-blog-health homepage ("Vitals" front page).
  *
@@ -77,8 +78,21 @@ inProgress.sort((a, b) => b.latest.valueOf() - a.latest.valueOf())
 
 const cats = await getCategoriesWithCounts()
 
-// Masthead dateline — "VOL. N · <today, long>" — the front-page nameplate.
+// WellnessScore vitals — computed at build time.
 const now = new Date()
+const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1)
+const postsThisMonth = allPosts.filter((p) => p.data.pubDate >= thisMonthStart).length
+const avgReadMins = allPosts.length > 0
+  ? Math.round(
+      allPosts.reduce((sum, p) => {
+        const rt = p.data.readingTime ?? readingTimeFor(p)
+        const m = parseInt(String(rt), 10)
+        return sum + (Number.isFinite(m) ? m : 5)
+      }, 0) / allPosts.length,
+    )
+  : 5
+
+// Masthead dateline — "VOL. N · <today, long>" — the front-page nameplate.
 const dateline = now.toLocaleDateString('en-GB', {
   weekday: 'long',
   day: 'numeric',
@@ -145,6 +159,12 @@ const jsonLd = {
 
     {lead && (
       <>
+        <WellnessScore
+          posts={allPosts.length}
+          postsThisMonth={postsThisMonth}
+          topicsCount={cats.length}
+          avgReadMins={avgReadMins}
+        />
         <hr class="rule-heavy" />
         <section class="lead" data-vertical={leadVertical} aria-labelledby="lead-title">
           <a class="lead-link" href={`/blog/${lead.id}`}>

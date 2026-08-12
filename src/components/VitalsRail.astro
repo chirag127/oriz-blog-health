@@ -41,11 +41,11 @@ const isActive = (href: string) =>
   href === '/' ? path === '/' : path.startsWith(href)
 
 const nav = [
-  { href: '/', label: 'Latest', channel: 'CH1' },
-  { href: '/series/', label: 'Guides', channel: 'CH2' },
-  { href: '/tags/', label: 'Topics', channel: 'CH3' },
-  { href: '/about/', label: 'About', channel: 'CH4' },
-  { href: '/now/', label: 'Now', channel: 'CH5' },
+  { href: '/', label: 'Feed', channel: 'CH1' },
+  { href: '/series/', label: 'Programs', channel: 'CH2' },
+  { href: '/tags/', label: 'Markers', channel: 'CH3' },
+  { href: '/about/', label: 'Profile', channel: 'CH4' },
+  { href: '/now/', label: 'Status', channel: 'CH5' },
 ]
 
 // Default site-wide vitals when a page doesn't pass its own.

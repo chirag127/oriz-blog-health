@@ -47,14 +47,19 @@ const series = [...folderMap.entries()].map(([folder, posts]) => {
   }
 })
 series.sort((a, b) => b.latestDate.valueOf() - a.latestDate.valueOf())
+
+// No multi-part series on this blog → don't show an empty shell.
+if (series.length === 0) {
+  return Astro.redirect('/blog/', 302)
+}
 ---
 
-<BaseLayout title="Series — Blog" description="Browse multi-part blog series.">
+<BaseLayout title="Programs — Vitals" description="Browse multi-part health programs and guide series.">
   <div class="page">
     <header class="page-head">
-      <p class="eyebrow">Running threads</p>
-      <h1>Series</h1>
-      <p class="meta">{series.length} series — {series.reduce((sum, s) => sum + s.postCount, 0)} posts. Each spine tracks parts published <SeriesSpine total={4} published={2} current={2} size="sm" /> against parts still drafting.</p>
+      <p class="eyebrow">Active programs</p>
+      <h1>Programs</h1>
+      <p class="meta">{series.length} programs — {series.reduce((sum, s) => sum + s.postCount, 0)} entries. Each spine tracks parts published <SeriesSpine total={4} published={2} current={2} size="sm" /> against parts still in progress.</p>
     </header>
 
     <ul class="series-list">

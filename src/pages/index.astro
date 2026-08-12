@@ -115,7 +115,6 @@ const jsonLd = {
   title="Vitals — health, measured"
   description={SITE_CONFIG.description}
   jsonLd={jsonLd}
-  hideSidebar
 >
   <div class="container-page">
     {/* Masthead — a calm instrument readout above the fold. */}
@@ -247,9 +246,13 @@ const jsonLd = {
 
 <style>
   .container-page {
-    max-width: 920px;
-    margin-inline: auto;
-    padding-inline: clamp(1.25rem, 4vw, 2rem);
+    max-width: 780px;
+    margin-inline: 0;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    padding-block-end: 1rem;
+  }
+  @media (max-width: 1023px) {
+    .container-page { margin-inline: auto; }
   }
 
   /* ── Masthead (front page) ─────────────────────────────────────────── */
